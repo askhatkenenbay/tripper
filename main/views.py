@@ -10,7 +10,7 @@ from django.conf import settings
 from django.http import FileResponse
 from django.views.decorators.csrf import csrf_exempt
 
-host = "https://075d1cc7eea2.ngrok.io/"
+host = "https://9e97e1fd0d9a.ngrok.io/"
 
 @csrf_exempt
 def getFollowers(request):
@@ -65,8 +65,9 @@ def getTrips(request):
         for qwe in t_followers:
             res.append(helper(qwe['follower']))
         temp['follower'] = list(res)
-    
-    return JsonResponse(list(all_pro), safe=False)
+    # print(sorted(list(all_pro), key=lambda x: x['follower'], reverse=True))
+    # .sort(key=lambda x: )
+    return JsonResponse(sorted(list(all_pro), key=lambda x: x['follower'], reverse=True), safe=False)
 
 @csrf_exempt
 def getTripById(request, trip_id):
